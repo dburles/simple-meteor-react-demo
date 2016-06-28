@@ -7,6 +7,7 @@ function Todos(props) {
     loading,
     items,
     onSubmit,
+    onCheck,
     onRemove,
   } = props;
 
@@ -16,6 +17,7 @@ function Todos(props) {
       <List
         loading={loading}
         items={items}
+        onCheck={onCheck}
         onRemove={onRemove}
       />
     </div>
@@ -26,6 +28,7 @@ Todos.propTypes = {
   loading: PropTypes.bool.isRequired,
   items: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onCheck: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
 };
 

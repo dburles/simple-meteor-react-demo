@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import Todos from '../components/Todos';
-import Items, { insert, remove } from '../collections/Items';
+import Items, { insert, setChecked, remove } from '../collections/Items';
 
 function handleSubmit(text) {
   const data = {
@@ -9,6 +9,22 @@ function handleSubmit(text) {
   };
 
   insert.call(data, (error, response) => {
+    if (error) {
+      console.log(error);
+    }
+    // success!
+  });
+}
+
+function handleChecked(_id, isChecked) {
+  const data = {
+    _id,
+    isChecked,
+  };
+
+  console.log(data);
+
+  setChecked.call(data, (error, response) => {
     if (error) {
       console.log(error);
     }
@@ -38,6 +54,7 @@ const TodosContainer = createContainer(() => {
     loading,
     items,
     onSubmit: handleSubmit,
+    onCheck: handleChecked,
     onRemove: handleRemove,
   };
 }, Todos);

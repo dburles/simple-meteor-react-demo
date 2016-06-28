@@ -4,12 +4,19 @@ function Item(props) {
   const {
     _id,
     text,
+    isChecked,
+    onCheck,
     onRemove,
   } = props;
 
   return (
     <li>
-      {text} - <input type="button" value="x" onClick={() => onRemove(_id)} />
+      <input
+        type="checkbox"
+        onChange={(event) => onCheck(_id, event.target.checked)}
+        checked={isChecked}
+      />
+      &nbsp;{text} - <input type="button" value="x" onClick={() => onRemove(_id)} />
     </li>
   );
 }
@@ -17,6 +24,8 @@ function Item(props) {
 Item.propTypes = {
   _id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  isChecked: PropTypes.bool.isRequired,
+  onCheck: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
 };
 

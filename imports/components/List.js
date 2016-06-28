@@ -5,6 +5,7 @@ function List(props) {
   const {
     loading,
     items,
+    onCheck,
     onRemove,
   } = props;
 
@@ -27,6 +28,8 @@ function List(props) {
           _id={_id}
           key={_id}
           text={text}
+          isChecked={isChecked}
+          onCheck={onCheck}
           onRemove={onRemove}
         />
       ))}
@@ -37,6 +40,7 @@ function List(props) {
 List.propTypes = {
   loading: PropTypes.bool.isRequired,
   items: PropTypes.array.isRequired,
+  onCheck: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
 };
 
